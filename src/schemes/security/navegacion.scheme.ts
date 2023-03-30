@@ -42,7 +42,7 @@ export interface ISubMenuScheme extends IBaseScheme {
   shortNombre?: string;
   modulo?: string;
   orden?: number;
-  menuID?: any;
+  menu?: any;
 }
 export const SubMenuScheme = new Schema<ISubMenuScheme>({
   ...BaseScheme ,
@@ -54,7 +54,7 @@ export const SubMenuScheme = new Schema<ISubMenuScheme>({
   shortNombre: { type: String },
   modulo: { type: String },
   orden: { type: Number },
-  menuID: {type: Types.ObjectId, ref: "Menu",required:true}
+  menu: {type: Types.ObjectId, ref: "Menu",required:true}
 },)
 
 export const SubMenuModel = MongoDB.getInstance._connection.model(

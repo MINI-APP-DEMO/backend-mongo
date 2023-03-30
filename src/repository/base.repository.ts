@@ -1,8 +1,9 @@
+import { IUsuarioScheme, UsuarioScheme } from './../schemes/security/usuario.scheme';
 import { Model, model, ObjectId } from "mongoose"
 import { getFechaUnix } from "../helpers/fechas"
 import { IBaseScheme } from "../schemes/base.scheme"
 import { IBaseRepository } from "./base.repository.interface"
-
+import { AnyBulkWriteOperation, BulkWriteOptions } from 'mongodb'
 export class BaseRepository<T> implements IBaseRepository<T>{
   protected _model
   constructor(model:  Model<T>) { this._model = model }
@@ -45,6 +46,9 @@ export class BaseRepository<T> implements IBaseRepository<T>{
       throw error
     }
   }
+
+
+
   async register(add: Partial<T>): Promise<any> {
     try {
       const defaultValues=this.generarDefaultValues()

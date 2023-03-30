@@ -1,13 +1,12 @@
-import { ISubMenuScheme } from './../schemes/security/navegacion.scheme';
+import { MarcasService } from './../services/marcas.service';
 import { Request, Response } from 'express'
 import Controller from '../core/controller.decorator'
 import { Get, Post, Delete, ProtectedURL } from '../core/handlers.decorator'
-import { SubMenuService } from '../services/submenu.service';
 import { IResponseController } from './index.controller';
-import { SubmenuAddDTO } from '../dto/request/submenu.dto';
-@Controller('/submenu')
-export default class SubMenuController {
-  private _service = new SubMenuService()
+import { IMarcaScheme } from '../schemes/maestros/marcas.scheme';
+@Controller('/marcas')
+export default class MarcasController {
+  private _service = new MarcasService()
 
   @ProtectedURL()
   @Get('/all')
@@ -24,14 +23,14 @@ export default class SubMenuController {
   @ProtectedURL()
   @Post('')
   public async add(req: Request, res: Response): Promise<any> {
-    let _response = { status:200,data:null,message:'registrando submenu'} as IResponseController
+    let _response = { status:200,data:null,message:'registrando marcas'} as IResponseController
     try {
       const body = req.body
-      const regs: SubmenuAddDTO []= [ ...body ]
+      const regs: Partial<IMarcaScheme>[]= [ ...body ]
       console.log('submenu request::', regs)
       for (let _add of regs) {
-        if (!_add.nombre || !_add.route || !_add.menuID) {
-          return  res.status(400).json({message:'[nombre,route,menuID] son requeridos'})
+        if (!_add.nombre ) {
+          return  res.status(400).json({message:'[nombre] son requeridos'})
           }
       }
       

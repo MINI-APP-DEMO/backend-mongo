@@ -7,8 +7,8 @@ export class SubMenuService{
   async findAll() {
     return await this._repository.findAll()
   }
-  async create(add:any) {
-    return await this._repository.register(add)
+  async create(add:any[]) {
+    return await this._repository.registerUpdateMultiple(add)
   }
 
   async deleteAll() {

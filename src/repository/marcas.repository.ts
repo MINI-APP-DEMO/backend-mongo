@@ -1,27 +1,24 @@
+
 import { AnyBulkWriteOperation, BulkWriteOptions } from 'mongodb'
-import {
-  IMenuScheme,
-  MenuModel,
-  SubMenuModel,
-} from './../schemes/security/navegacion.scheme'
+import { IMarcaScheme, MarcaModel } from '../schemes/maestros/marcas.scheme'
 import { BaseRepository } from './base.repository'
 
-export class MenuRepository extends BaseRepository<IMenuScheme> {
+export class MarcaRepository extends BaseRepository<IMarcaScheme> {
   private _submenu
   constructor() {
-    super(MenuModel)
-    this._submenu = SubMenuModel
+    super(MarcaModel)
+    this._submenu = MarcaModel
   }
   override async findAll() {
     return await this._model.find().select('')
   }
 
-  async registerUpdateMultiple(add: Partial<IMenuScheme>[]): Promise<any> {
+  async registerUpdateMultiple(add: Partial<IMarcaScheme>[]): Promise<any> {
     try {
       const defaultValues = this.generarDefaultValues()
       const updatedValues = this.generarUpdateDefaultValues()
-      const registrosBulk: AnyBulkWriteOperation<IMenuScheme>[] = []
-      console.log('regsitros::', add)
+      const registrosBulk: AnyBulkWriteOperation<IMarcaScheme>[] = []
+      console.log('registros::', add)
       for (let reg of add) {
         let itemReg = {} as any
         if (reg._id) {
@@ -48,7 +45,7 @@ export class MenuRepository extends BaseRepository<IMenuScheme> {
     }
   }
 
-  async registerMultiple(add: Partial<IMenuScheme>[]): Promise<any> {
+  async registerMultiple(add: Partial<IMarcaScheme>[]): Promise<any> {
     try {
       const defaultValues = this.generarDefaultValues()
       const registros = []
@@ -67,15 +64,5 @@ export class MenuRepository extends BaseRepository<IMenuScheme> {
       throw error
     }
   }
-  async findAllDetails() {
-    const menu = await this._model.find().select('').where('isDeleted').equals(false)
-    for (let _menu of menu) {
-      const submenus = await this._submenu
-        .find({ menu: _menu._id })
-        .select('')
-        
-      _menu.submenus = submenus
-    }
-    return menu
-  }
+ 
 }
