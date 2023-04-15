@@ -1,13 +1,14 @@
 import { ENVIRONMENT } from './../constantes'
 import mongoose, { Mongoose, Connection } from 'mongoose'
-
+console.log(ENVIRONMENT.database.mongo.port)
 export class MongoDB {
    _connection: Connection
   private _mongoose = mongoose
   private static Instance: MongoDB
   constructor() {
+    console.log(ENVIRONMENT)
     this._mongoose.connect(
-      `mongodb://${ENVIRONMENT.database.mongo.host}:${ENVIRONMENT.database.mongo.port}/${ENVIRONMENT.database.mongo.database}`
+      `mongodb://${ENVIRONMENT.database.mongo.host}:${ENVIRONMENT.database.mongo.port||27017}/${ENVIRONMENT.database.mongo.database}`
     )
     this._connection = mongoose.connection
     try {

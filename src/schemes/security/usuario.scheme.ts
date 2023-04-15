@@ -16,7 +16,7 @@ export const UsuarioScheme = new Schema<IUsuarioScheme>({
   ...BaseScheme ,
   username: { type: String, required: true },
   password: { type: String, required: true },
-  rolID: { type: Number, required: true },
+  rolID: { type: Number, required: false },
   rolesIDs: { type: Array<Number> },
   id: Schema.Types.ObjectId,
   filialIDs: { type: Array<Number> },

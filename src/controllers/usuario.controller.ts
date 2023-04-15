@@ -39,12 +39,13 @@ export default class UsuarioController {
   public async add(req: Request, res: Response): Promise<any> {
     try {
       const body = req.body
-      const newUsuario: IUsuarioScheme[]= { ...body }
+      const newUsuario: IUsuarioScheme[]= [ ...body ]
       const save = await this._service.create(newUsuario)
       console.log(save)
       res.status(200).json(save)
     } catch (error) {
-      res.status(500).send(error)
+      console.log(error)
+      res.status(500).json({error:error+''})
     }
   }
 
