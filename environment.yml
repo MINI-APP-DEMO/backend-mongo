@@ -25,7 +25,9 @@ jwt:
   secretKey: tiendita
   algorithm: RS256
   expiresIn: 12h
-
+push-notificacion:
+  PUBLIC_VAPID_KEY: BF9OeDTIqgheLWgH6waFTqoNxqiHknPeMxi7qnLp6M5TwipkC0HXDVODBlTqY7VRNEIivLa5p0YGzbCHn7xUeK4
+  PRIVATE_VAPID_KEY: Ehjtywcg9TcE5NNrCuIVEcQXaHQpMTAG-iwe3kS-flU
 #PRODUCCION
 
 # server:

@@ -2,6 +2,7 @@ import CategoriaController from './categoria.controller'
 import LoginController from './login.controller'
 import MarcasController from './marcas.controller'
 import MenuController from './menu.controller'
+import NotificacionController from './push-notificacion.controller'
 import SubMenuController from './submenu.controller'
 import UsuarioController from './usuario.controller'
 export const controllers = [
@@ -10,7 +11,8 @@ export const controllers = [
   MenuController,
   SubMenuController,
   CategoriaController,
-  MarcasController
+  MarcasController,
+  NotificacionController
 ]
 
 export interface IResponseController {

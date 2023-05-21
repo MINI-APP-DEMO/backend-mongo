@@ -38,7 +38,7 @@ export const JWT = {
     // middleware to validate token (rutas protegidas)
     const authHeader = req.headers["authorization"];
     const token = authHeader && authHeader.split(" ")[1];
-    console.log('token recibido ::',token)
+    // console.log('token recibido ::',token)
     if (!token) return res.status(401).json({ error: 'Acceso denegado' })
     try {
       const verified = JWT.decode(token)
