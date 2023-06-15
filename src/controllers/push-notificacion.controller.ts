@@ -1,5 +1,5 @@
 import Controller from "../core/controller.decorator"
-import { Get, Post } from "../core/handlers.decorator"
+import { Get, Post, ProtectedURL } from "../core/handlers.decorator"
 import { WebPush } from "../settings/web-push"
 import { IResponseController } from "./index.controller"
 import { Request, Response } from 'express'
@@ -8,6 +8,8 @@ import { Request, Response } from 'express'
 export default class NotificacionController {
  
   @Post("/subscribe")
+  @ProtectedURL()
+  @ProtectedURL()
   public async subscribe(req: Request, res: Response): Promise<void> {
     let response = {} as IResponseController
     const body = req.body
@@ -28,6 +30,7 @@ export default class NotificacionController {
     }
     res.status(response.status).json(response)
   }
+
 
 
   @Get("/credentials")
