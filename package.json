@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "nodemon ./src/main.ts  --env dev",
     "build": "tsc ",
-    "start": "node ./dist/main.js --prod"
+    "start": "node ./dist/main.js --prod",
+    "fn-gdata":"node ./src/functions/seeders.ts"
   },
   "keywords": [],
   "author": "",

@@ -17,6 +17,7 @@ export default class CategoriaController {
       const findAll = await this._service.findAll()
       response.data=findAll
     } catch (error) {
+      console.log("error ::",error)
       response = { error: error + '', data: null, status: 500 }
     }
     res.status(response.status).json(response)

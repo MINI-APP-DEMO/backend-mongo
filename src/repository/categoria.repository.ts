@@ -10,7 +10,7 @@ export class CategoriaRepository extends BaseRepository<ICategoriaScheme> {
     
   }
   override async findAll() {
-    return await this._model.find().select('')
+    return await this._model.find().select('').where({ status: true })
   }
 
   async registerUpdateMultiple(add: Partial<ICategoriaScheme>[]): Promise<any> {
